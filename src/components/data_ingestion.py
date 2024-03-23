@@ -3,10 +3,13 @@ import sys
 from src.exception import customeException
 from src.logger import logging
 import pandas as pd
+from sklearn.metrics import r2_score
 
 from sklearn.model_selection import train_test_split
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
+from src.components.model_trainer import Modeltrainingconfig
+from src.components.model_trainer import modeltraining
 from dataclasses import dataclass
 
 @dataclass
@@ -54,6 +57,16 @@ if __name__=='__main__':
     
     data_transformation=DataTransformation()
     
-    data_transformation.initiate_data_transformation(train_path,test_path)
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_path,test_path)
+    
+    obj=modeltraining()
+    
+    r2=obj.initiate_model_trainig(train_arr,test_arr)
+    
+    print(r2)
+    
+    logging.info(f"R-squared score of the best model: {r2}")
+    
+ 
 
 
