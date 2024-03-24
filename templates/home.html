@@ -1,0 +1,68 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Student Exam Performance Indicator</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Student Exam Performance Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-control" name="sex" placeholder="Enter your Gender" required>
+                <option class="placeholder" selected disabled value="">Select your Gender</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Region</label>
+            <select class="form-control" name="region" placeholder="Enter your region" required>
+                <option class="placeholder" selected disabled value="">Select region</option>
+                <option value="southwest">southwest</option>
+                <option value="southeast">southeast</option>
+                <option value="northwest">northwest</option>
+                <option value="northeast">northeast</option>
+            </select>
+        </div>
+         
+        <div class="mb-3">
+            <label class="form-label">Smoker</label>
+            <select class="form-control" name="smoker" placeholder="Smoker" required>
+                <option class="placeholder" selected disabled value="">Select smoker Type</option>
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+        </div>
+         
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" name="age"
+                placeholder="Enter your age" min='15' max='80' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">BMI</label>
+            <input class="form-control" type="number" name="bmi"
+                placeholder="Enter your BMI" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Children</label>
+            <input class="form-control" type="number" name="children"
+                placeholder="Enter number of children" min='0' max='8' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict your Target Premium" required />
+        </div>
+    </form>
+    {% if results %}
+    <h2>
+       The prediction is {{results}}
+    </h2>
+    {% endif %}
+    {% if error %}
+    <h2 style="color: red;">
+       {{error}}
+    </h2>
+    {% endif %}
+   <body>
+</html>
